@@ -1,6 +1,5 @@
-﻿// Напишите программу, которая перевернёт одномерный массив 
-// (первый элемент станет последним, второй – предпоследним и т.д.)
-
+﻿// Задайте массив заполненный случайными трёхзначными числами. 
+// Напишите программу, которая покажет количество чётных чисел в массиве.
 
 using System;
 class Program
@@ -14,7 +13,6 @@ class Program
             {
                 array[i] = new Random().Next(min, max);
             }
-            System.Console.WriteLine($"Массив создан.");
             return array;
         }
 
@@ -27,27 +25,27 @@ class Program
             System.Console.WriteLine();
         }
 
-        int[] ReverseArray(int[] array)
+        int CountEvenNum(int[] array)
         {
-            for (int i = 0; i < array.Length / 2; i++)
+            int count = 0;
+            for (int i = 0; i < array.Length; i++)
             {
-                int temp = array[i];
-                array[i] = array[array.Length - i - 1];
-                array[array.Length - i - 1] = temp;
+                if (array[i] % 2 == 0)
+                {
+                    count++;
+                }
             }
-            System.Console.WriteLine($"Массив перевернут.");
-            return array;
+            return count;
         }
 
         System.Console.WriteLine($"Введите размер массива: ");
         int size = Convert.ToInt32(Console.ReadLine());
-        System.Console.WriteLine($"Введите минимальное значение элемента: ");
-        int min = Convert.ToInt32(Console.ReadLine());
-        System.Console.WriteLine($"Введите максимальное значение элемента: ");
-        int max = Convert.ToInt32(Console.ReadLine());
-        int[] array = CreateArray(size, min, max);
+        int min = 100;
+        int max = 999;
+        int[] array = CreateArray(size,min,max);
+        System.Console.Write($"В массиве из целых 3-х значных чисел: "); 
         PrintArray(array);
-        ReverseArray(array);
-        PrintArray(array);
+        System.Console.Write($"четных чисел найдено в количестве {CountEvenNum(array)} штук.");
+
     }
 }
